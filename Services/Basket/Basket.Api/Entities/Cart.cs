@@ -13,8 +13,9 @@ public class Cart
         get
         {
             decimal totalPrice = 0;
-            foreach (CartItem item in Items)
-                totalPrice += item.Price * item.Quantity;
+            if (Items != null && Items.Any())
+                foreach (CartItem item in Items)
+                    totalPrice += item.Price * item.Quantity;
             return totalPrice;
         }
     }
