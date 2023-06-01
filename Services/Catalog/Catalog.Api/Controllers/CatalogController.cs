@@ -20,6 +20,7 @@ public class CatalogController : ControllerBase
         _logger = logger;
     }
 
+
     [HttpGet]
     [ProducesResponseType(typeof(IEnumerable<Product>), (int)HttpStatusCode.OK)]
     public async Task<ActionResult<IEnumerable<Product>>> GetProducts()
@@ -27,6 +28,7 @@ public class CatalogController : ControllerBase
         var products = await _productRepository.GetProducts();
         return Ok(products);
     }
+
 
     [HttpGet("{id:length(24)}", Name = "GetProduct")]
     [ProducesResponseType((int)HttpStatusCode.NotFound)]
@@ -43,13 +45,6 @@ public class CatalogController : ControllerBase
         return Ok(product);
     }
 
-    [HttpGet("[action]/{name}")]
-    [ProducesResponseType(typeof(IEnumerable<Product>), (int)HttpStatusCode.OK)]
-    public async Task<ActionResult<IEnumerable<Product>>> GetProductsByName(string name)
-    {
-        var products = await _productRepository.GetProductsByName(name);
-        return Ok(products);
-    }
 
     [HttpGet("[action]/{category}")]
     [ProducesResponseType(typeof(IEnumerable<Product>), (int)HttpStatusCode.OK)]
@@ -59,6 +54,7 @@ public class CatalogController : ControllerBase
         return Ok(products);
     }
 
+
     [HttpPost]
     [ProducesResponseType(typeof(Product), (int)HttpStatusCode.OK)]
     public async Task<IActionResult> CreateProduct([FromBody] Product product)
@@ -67,12 +63,14 @@ public class CatalogController : ControllerBase
         return CreatedAtRoute("GetProduct", new { id = product.Id }, product);
     }
 
+
     [HttpPut]
     [ProducesResponseType(typeof(Product), (int)HttpStatusCode.OK)]
     public async Task<IActionResult> UpdateProduct([FromBody] Product product)
     {
         return Ok(await _productRepository.UpdateProduct(product));
     }
+
 
     [HttpDelete("{id:length(24)}", Name = "DeleteProduct")]
     [ProducesResponseType(typeof(Product), (int)HttpStatusCode.OK)]
