@@ -31,7 +31,7 @@ public class BasketController : ControllerBase
     [ProducesResponseType(typeof(Cart), (int)HttpStatusCode.OK)]
     public async Task<ActionResult<Cart>> UpsertBasket([FromBody] Cart basket)
     {
-        if (basket.Items != null && basket.Items.Any())
+        if (basket.Items != null)
         {
             foreach (var item in basket.Items)
             {
