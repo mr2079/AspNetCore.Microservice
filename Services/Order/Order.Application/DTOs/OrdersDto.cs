@@ -1,9 +1,8 @@
-﻿using Order.Domain.Common;
+﻿namespace Order.Application.DTOs;
 
-namespace Order.Domain.Entities;
-
-public class Order : BaseEntity
+public class OrdersDto
 {
+    public int Id { get; set; }
     public string UserName { get; set; } = string.Empty;
     public decimal TotalPrice { get; set; }
 

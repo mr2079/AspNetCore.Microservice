@@ -1,4 +1,4 @@
-﻿namespace Order.Domain.Commen;
+﻿namespace Order.Domain.Common;
 
 public abstract class BaseEntity
 {
